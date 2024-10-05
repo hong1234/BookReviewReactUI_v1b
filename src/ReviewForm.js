@@ -9,6 +9,12 @@ const ReviewForm = ({state, dispatch}) => {
   const [emailInput, setEmailInput] = useState('');
   const [contentInput, setContentInput] = useState(''); 
 
+  const clearForm = () => {
+    setNameInput('');
+    setEmailInput('');
+    setContentInput('');
+  }
+
   const postData = async () => { 
     if(nameInput.trim() !== '' && emailInput.trim() !== '' && contentInput.trim() !== ''){
       const review = {
@@ -25,9 +31,7 @@ const ReviewForm = ({state, dispatch}) => {
         const res =  await axios.post(`${reviewUrl}${state.book.id}`, review, options) 
         state.book.reviews.push(res.data.data); // push review returned from server
         dispatch({type: 'addReview', payload: false})
-        setNameInput('');
-        setEmailInput('');
-        setContentInput('')
+        clearForm()
       } catch (error) {
         // throw(error);
         console.log(error.message)
