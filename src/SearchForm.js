@@ -19,7 +19,7 @@ const SearchForm = ({dispatch}) => {
       setFilterText('');
     } catch (error) {
       // throw(error);
-      console.log(error)
+      console.log(error.message)
     }
   }
 

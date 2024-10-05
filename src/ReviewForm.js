@@ -25,10 +25,12 @@ const ReviewForm = ({state, dispatch}) => {
         const res =  await axios.post(`${reviewUrl}${state.book.id}`, review, options) 
         state.book.reviews.push(res.data.data); // push review returned from server
         dispatch({type: 'addReview', payload: false})
-
+        setNameInput('');
+        setEmailInput('');
+        setContentInput('')
       } catch (error) {
         // throw(error);
-        console.log(error)
+        console.log(error.message)
       }
     } 
     else {
